@@ -1,0 +1,52 @@
+@import "../../shared_styles/colors.scss";
+
+Button {
+  padding: 8px 16px;
+  border-radius: 16px;
+  width: 155px;
+
+  &:disabled {
+    border: 1px solid $gray !important;
+    color: $gray !important;
+    cursor: not-allowed !important;
+  }
+}
+
+Button.start-request-button {
+  border: 1px solid $green;
+  color: $green;
+
+  &:hover {
+    border: 2px solid $green;
+  }
+
+  &:active {
+    border: 3px solid $green;
+  }
+}
+
+Button.finish-request-button {
+  border: 1px solid $red;
+  color: $red;
+
+  &:hover {
+    border: 2px solid $red;
+  }
+  
+  &:active {
+    border: 3px solid $red;
+  }
+}
+
+Button.pause-request-button {
+  border: 1px solid $purple;
+  color: $purple;
+
+  &:hover {
+    border: 2px solid $purple
+  }
+
+  &:active {
+    border: 3px solid $purple;
+  }
+}
