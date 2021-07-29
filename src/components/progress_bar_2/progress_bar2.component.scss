@@ -4,7 +4,8 @@
   height: 6px;
   width: 100%;
   background-color: #e0e0de;
-  border-radius: 20px;
+  border-radius: 50px;
+  margin-top: 20px;
 }
 
 .filler {
@@ -12,7 +13,6 @@
   background-color: $red;
   background-image: linear-gradient(315deg, $red 0%, $sunset 74%);;
   border-radius: inherit;
-  transition: width 1s linear;
 }
 
 .progress-bar {

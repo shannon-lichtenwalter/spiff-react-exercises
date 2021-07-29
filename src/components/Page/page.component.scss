@@ -1,7 +1,32 @@
-.button-controls {
+.button-controls, .toggle-option {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   height: 50px;
+}
+
+.toggle-option {
+  justify-content: center;
+}
+
+.set-breakpoints-input {
+  color: coral;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+
+  input {
+    width: 50%;
+    text-align: center;
+    border: 1px solid coral;
+    padding: 8px 16px;
+    border-radius: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 }

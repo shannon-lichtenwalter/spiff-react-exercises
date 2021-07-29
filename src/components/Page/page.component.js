@@ -3,12 +3,16 @@ import * as React from 'react';
 import Button from "../button/button.component";
 import ProgressBar from "../progress_bar/progress_bar.component";
 import './page.component.scss';
+import ProgressBar2 from "../progress_bar_2/progress_bar_2.component";
 
 class Page extends Component {
   state = {
     isLoading: false,
     percentLoaded: 0,
-    progressBarVisible: true
+    progressBarVisible: true,
+    breakpoints: "",
+    validatedBreakpoints: [0],
+    normalBar: true
   };
 
   intervalId;
@@ -84,6 +88,29 @@ class Page extends Component {
     });
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let breakpoints = this.state.breakpoints;
+    let validatedBreakpoints = breakpoints
+      .split(",")
+      .map(points => Number(points.trim()))
+      .sort((a, b) => a - b)
+      .filter(num => num >= 0 && num <= 100);
+
+    this.setState({
+      ...this.state,
+      validatedBreakpoints: validatedBreakpoints.length === 0 ? [0] : validatedBreakpoints,
+      breakpoints: ""
+    });
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      ...this.state,
+      breakpoints: event.target.value
+    });
+  }
+
   render() {
     const classes = this.state.progressBarVisible ? 'progress-bar' : 'progress-bar hide'
     return (
@@ -108,9 +135,45 @@ class Page extends Component {
             Finish Request
           </Button>
         </div>
-        <div className="basket">
-          <ProgressBar percentLoaded={this.state.percentLoaded} className={classes} />
+
+        <div className="toggle-option">
+          <Button
+            className="toggle-bar"
+            onClick={() => this.setState({ ...this.state, normalBar: !this.state.normalBar })}>
+            Toggle Bar
+          </Button>
         </div>
+
+        {this.state.normalBar &&
+          <div>
+            <ProgressBar percentLoaded={this.state.percentLoaded} className={classes} />
+          </div>
+        }
+
+        {!this.state.normalBar &&
+          <div className="breakpoints-bar">
+            <div>
+              <ProgressBar2 percentLoaded={this.state.percentLoaded} breakpoints={this.state.validatedBreakpoints} className={classes} />
+            </div>
+            <form onSubmit={this.handleSubmit} className="set-breakpoints-input">
+              <label>
+                Select Breakpoints:
+              </label>
+              <input
+                type="text"
+                placeholder="please enter numbers separated by comma"
+                value={this.state.breakpoints}
+                onChange={this.handleChange} />
+              <Button
+                type="submit"
+                value="Submit"
+                className="submit-request-button">
+                Submit
+              </Button>
+            </form>
+          </div>
+        }
+
       </div>
     );
   };
