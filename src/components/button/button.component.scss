@@ -38,7 +38,7 @@ Button.finish-request-button {
   }
 }
 
-Button.pause-request-button {
+Button.pause-request-button, Button.toggle-bar{
   border: 1px solid $purple;
   color: $purple;
 
@@ -48,5 +48,18 @@ Button.pause-request-button {
 
   &:active {
     border: 3px solid $purple;
+  }
+}
+
+Button.submit-request-button {
+  border: 1px solid $coral;
+  color: $coral;
+
+  &:hover {
+    border: 2px solid $coral
+  }
+
+  &:active {
+    border: 3px solid $coral;
   }
 }
